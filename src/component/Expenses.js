@@ -1,7 +1,8 @@
 import './Expenses.css'
 import ExpenseItem from "./ExpenseItem";
 import React from "react";
-function Expenses (props) {
+
+function Expenses(props) {
     const expenses = props.expenses;
 
     return (
