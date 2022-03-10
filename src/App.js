@@ -1,8 +1,8 @@
 import './App.css';
-import Expenses from "./component/Expenses";
+import Expenses from "./component/Expense/Expenses";
 import React from "react";
 
-function App() {
+const App = () => {
 
     const expenseArray = [
         {
