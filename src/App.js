@@ -1,22 +1,31 @@
-import React, {useState} from 'react';
-import AddUser from "./components/Users/AddUser";
-import UsersList from "./components/Users/UsersList";
+import React, { useState } from 'react';
+
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import MainHeader from './components/MainHeader/MainHeader';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [usersList, setUsersList] = useState([]);
-    const addUserHandler = (username, userAge) => {
-        setUsersList((prevUsersList) => {
-            return [...prevUsersList, {id: Math.random().toString(), name: username, age: userAge}];
-        })
-    };
+  const loginHandler = (email, password) => {
+    // We should of course check email and password
+    // But it's just a dummy/ demo anyways
+    setIsLoggedIn(true);
+  };
 
-    return (
-        <div>
-            <AddUser onAddUser={addUserHandler}/>
-            <UsersList users={usersList}/>
-        </div>
-    );
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <React.Fragment>
+      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+      <main>
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
+    </React.Fragment>
+  );
 }
 
 export default App;
